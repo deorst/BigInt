@@ -1,1 +1,7 @@
+# ./dev folder is there for messy drafting, PoC-ing and testing
 dev
+
+# binaries without extension
+*
+!/**/
+!*.*

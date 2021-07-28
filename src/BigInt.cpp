@@ -11,7 +11,6 @@ int toInt(const char &c)
 {
   return c - '0';
 }
-
 char toChar(const int &i)
 {
   return i + '0';
@@ -22,12 +21,10 @@ BigInt::BigInt(const string &s)
 {
   set(s);
 }
-
 BigInt::BigInt(const vector<T> &vec)
 {
   this->vec.assign(vec.begin(), vec.end());
 }
-
 BigInt::BigInt(const BigInt &other)
 {
   vec.assign(other.vec.begin(), other.vec.end());
@@ -47,14 +44,19 @@ string BigInt::toString()
 // Setters
 BigInt &BigInt::set(const string &s)
 {
+  vec.clear();
   for (auto i{s.rbegin()}; i != s.rend(); ++i)
   {
     vec.push_back(toInt(*i));
   }
   return *this;
 }
-
-BigInt &BigInt::assign(const BigInt &other)
+BigInt &BigInt::set(const vector<T> &other)
+{
+  this->vec.assign(other.begin(), other.end());
+  return *this;
+}
+BigInt &BigInt::set(const BigInt &other)
 {
   this->vec.assign(other.vec.begin(), other.vec.end());
   return *this;
