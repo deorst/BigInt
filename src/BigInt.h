@@ -30,6 +30,6 @@ public:
   BigInt &increment(const BigInt &other);
 
   // Creators
-  BigInt &add(const BigInt &other);
+  BigInt add(const BigInt &other);
 };
 #endif

@@ -82,10 +82,10 @@ BigInt &BigInt::increment(const BigInt &a)
   return *this;
 }
 
-// Creators :)
-BigInt &BigInt::add(const BigInt &other)
+// Creators
+BigInt BigInt::add(const BigInt &other)
 {
   BigInt *temp{new BigInt(*this)};
+  // Returns by value. Use move semantic here.
   return temp->increment(other);
-  return *temp;
 }
