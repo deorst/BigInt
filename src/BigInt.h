@@ -12,6 +12,7 @@ class BigInt
 private:
 public:
   vector<T> vec;
+  bool negative{false};
 
   // Constructors
   BigInt(const string &s);
@@ -28,6 +29,7 @@ public:
 
   // Mutators
   BigInt &increment(const BigInt &other);
+  BigInt &decrement(const BigInt &other);
 
   // Creators
   BigInt add(const BigInt &other);

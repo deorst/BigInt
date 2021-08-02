@@ -34,6 +34,8 @@ BigInt::BigInt(const BigInt &other)
 string BigInt::toString()
 {
   string res{};
+  if (negative)
+    res.push_back('-');
   for (auto i{vec.rbegin()}; i != vec.rend(); ++i)
   {
     res.push_back(toChar(*i));
@@ -78,6 +80,31 @@ BigInt &BigInt::increment(const BigInt &a)
       vec[i] %= 10;
       carry /= 10;
     }
+  }
+  return *this;
+}
+BigInt &BigInt::decrement(const BigInt &other)
+{
+  if (other.vec.size() > vec.size())
+    vec.resize(other.vec.size());
+  for (int i{}; i < vec.size(); ++i)
+  {
+    if (vec[i] < other.vec[i])
+    {
+      if ((i + 1) < vec.size() && vec[i + 1] > 0)
+      {
+        --vec[i + 1];
+        vec[i] += 10;
+      }
+      else
+      {
+        negative = true;
+      }
+    }
+    if (!negative)
+      vec[i] -= other.vec[i];
+    else
+      vec[i] = other.vec[i] - vec[i];
   }
   return *this;
 }

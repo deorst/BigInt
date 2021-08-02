@@ -103,6 +103,38 @@ void testIncrement()
 
   cout << "OK\n";
 }
+void testDecrement()
+{
+  cout << "\tDecrement...";
+
+  {
+    BigInt a{"0002"}, b{"0001"};
+    assert(a.decrement(b).toString() == "0001");
+  }
+  {
+    BigInt a{"1234"}, b{"0123"};
+    assert(a.decrement(b).toString() == "1111");
+  }
+  {
+    BigInt a{"0010"}, b{"0001"};
+    assert(a.decrement(b).toString() == "0009");
+  }
+  {
+    BigInt a{"1234"}, b{"0345"};
+    assert(a.decrement(b).toString() == "0889");
+  }
+  {
+    BigInt a{"0001"}, b{"0002"};
+    assert(a.decrement(b).toString() == "-0001");
+  }
+  {
+    BigInt a{"321"}, b{"1234"};
+    // cout << a.decrement(b).toString() << '\n';
+    assert(a.decrement(b).toString() == "-1087");
+  }
+
+  cout << "OK\n";
+}
 
 // Creators
 void testAdd()
@@ -140,6 +172,7 @@ int main()
   // Mutators
   cout << "\nMutators\n\n";
   testIncrement();
+  testDecrement();
 
   // Creators
   cout << "\nCreators\n\n";
