@@ -30,6 +30,7 @@ public:
   // Mutators
   BigInt &increment(const BigInt &other);
   BigInt &decrement(const BigInt &other);
+  BigInt &multiply(const BigInt &other);
 
   // Creators
   BigInt add(const BigInt &other);

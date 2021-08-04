@@ -135,6 +135,29 @@ void testDecrement()
 
   cout << "OK\n";
 }
+void testMultiply()
+{
+  cout << "\tMultiply...";
+
+  {
+    BigInt a{"0123"}, b{"0006"};
+    assert(a.multiply(b).toString() == "0738");
+  }
+  {
+    BigInt a{"0123"}, b{"0006"};
+    assert(b.multiply(a).toString() == "0738");
+  }
+  {
+    BigInt a{"0123"}, b{"0056"};
+    assert(a.multiply(b).toString() == "6888");
+  }
+  {
+    BigInt a{"0123"}, b{"0056"};
+    assert(b.multiply(a).toString() == "6888");
+  }
+
+  cout << "OK\n";
+}
 
 // Creators
 void testAdd()
@@ -173,6 +196,7 @@ int main()
   cout << "\nMutators\n\n";
   testIncrement();
   testDecrement();
+  testMultiply();
 
   // Creators
   cout << "\nCreators\n\n";

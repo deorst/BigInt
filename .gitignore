@@ -5,3 +5,8 @@ dev
 *
 !/**/
 !*.*
+
+# Editors
+.vscode
+
+*.dSYM

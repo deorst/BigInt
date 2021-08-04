@@ -108,6 +108,33 @@ BigInt &BigInt::decrement(const BigInt &other)
   }
   return *this;
 }
+BigInt &BigInt::multiply(const BigInt &other)
+{
+  if (other.vec.size() > vec.size())
+    vec.resize(other.vec.size());
+
+  vector<T> temp(vec.size());
+  temp.assign(vec.begin(), vec.end());
+  vec.clear();
+  vec.resize(temp.size());
+
+  int carry{};
+  for (int i{}; i < other.vec.size(); ++i)
+  {
+    for (int j{}; j < temp.size(); ++j)
+    {
+      vec[i + j] += other.vec[i] * temp[j] + carry;
+      carry = 0;
+      if (vec[i + j] >= 10)
+      {
+        carry = vec[i + j];
+        vec[i + j] %= 10;
+        carry /= 10;
+      }
+    }
+  }
+  return *this;
+}
 
 // Creators
 BigInt BigInt::add(const BigInt &other)
