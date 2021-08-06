@@ -31,7 +31,7 @@ BigInt::BigInt(const BigInt &other)
 }
 
 // Getters
-string BigInt::toString()
+const &string BigInt::toString() const
 {
   string res{};
   if (negative)

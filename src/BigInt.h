@@ -20,7 +20,7 @@ public:
   BigInt(const BigInt &a);
 
   // Getters
-  string toString();
+  const &string toString() const;
 
   // Setters
   BigInt &set(const string &s);
