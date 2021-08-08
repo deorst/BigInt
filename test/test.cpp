@@ -159,20 +159,7 @@ void testMultiply()
   cout << "OK\n";
 }
 
-// Creators
-void testAdd()
-{
-  cout << "\tAdd...";
-
-  BigInt a{"0001"}, b{"0002"};
-  assert(a.add(b).toString() == "0003");
-
-  // Initial variables not changed
-  assert(a.toString() == "0001");
-  assert(b.toString() == "0002");
-
-  cout << "OK\n";
-}
+// Overloaded operators
 void testAddition()
 {
   cout << "\tAddition...";
@@ -192,6 +179,37 @@ void testAddition()
     assert(a.toString() == "0001");
     assert(b.toString() == "0009");
   }
+  cout << "OK\n";
+}
+void testSubtraction()
+{
+  cout << "\tSubtraction...";
+
+  {
+    BigInt a{"0002"}, b{"0001"};
+    assert((a - b).toString() == "0001");
+  }
+  {
+    BigInt a{"1234"}, b{"0123"};
+    assert((a - b).toString() == "1111");
+  }
+  {
+    BigInt a{"0010"}, b{"0001"};
+    assert((a - b).toString() == "0009");
+  }
+  {
+    BigInt a{"1234"}, b{"0345"};
+    assert((a - b).toString() == "0889");
+  }
+  {
+    BigInt a{"0001"}, b{"0002"};
+    assert((a - b).toString() == "-0001");
+  }
+  {
+    BigInt a{"321"}, b{"1234"};
+    assert((a - b).toString() == "-1087");
+  }
+
   cout << "OK\n";
 }
 
@@ -219,8 +237,8 @@ int main()
   testDecrement();
   testMultiply();
 
-  // Creators
-  cout << "\nCreators\n\n";
-  testAdd();
+  // Overloaded operators
+  cout << "\nOverloaded operators\n\n";
   testAddition();
+  testSubtraction();
 }

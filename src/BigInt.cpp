@@ -136,36 +136,54 @@ BigInt &BigInt::multiply(const BigInt &other)
   return *this;
 }
 
-// Creators
-BigInt BigInt::add(const BigInt &other)
-{
-  BigInt *temp{new BigInt(*this)};
-  // Returns by value. Use move semantic here.
-  return temp->increment(other);
-}
-
-BigInt operator+(const BigInt &bigger, const BigInt &smaller)
+BigInt operator+(const BigInt &a, const BigInt &b)
 {
   // Compare size, not value
-  if (bigger.vec.size() >= smaller.vec.size())
+  if (a.vec.size() >= b.vec.size())
   {
-    BigInt res{bigger};
+    BigInt res{a};
     int carry{};
-    for (int i{}; i < smaller.vec.size(); ++i)
+    for (int i{}; i < b.vec.size(); ++i)
     {
-      res.vec[i] = smaller.vec[i] + bigger.vec[i] + carry;
+      res.vec[i] = b.vec[i] + a.vec[i] + carry;
       carry = res.vec[i] / 10;
       res.vec[i] %= 10;
     }
 
-    for (int i{static_cast<int>(smaller.vec.size())}; i < bigger.vec.size(); ++i)
+    for (int i{static_cast<int>(b.vec.size())}; i < a.vec.size(); ++i)
     {
-      res.vec[i] = bigger.vec[i] + carry;
+      res.vec[i] = a.vec[i] + carry;
       carry = res.vec[i] / 10;
       res.vec[i] %= 10;
     }
     return res;
   }
   else
-    return operator+(smaller, bigger);
+    return operator+(b, a);
+}
+BigInt operator-(const BigInt &a, const BigInt &b)
+{
+  BigInt res(a);
+  if (b.vec.size() > res.vec.size())
+    res.vec.resize(b.vec.size());
+  for (int i{}; i < res.vec.size(); ++i)
+  {
+    if (res.vec[i] < b.vec[i])
+    {
+      if ((i + 1) < res.vec.size() && res.vec[i + 1] > 0)
+      {
+        --res.vec[i + 1];
+        res.vec[i] += 10;
+      }
+      else
+      {
+        res.negative = true;
+      }
+    }
+    if (!res.negative)
+      res.vec[i] -= b.vec[i];
+    else
+      res.vec[i] = b.vec[i] - res.vec[i];
+  }
+  return res;
 }

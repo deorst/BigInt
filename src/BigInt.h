@@ -32,8 +32,7 @@ public:
   BigInt &decrement(const BigInt &other);
   BigInt &multiply(const BigInt &other);
 
-  // Creators
-  BigInt add(const BigInt &other);
   friend BigInt operator+(const BigInt &a, const BigInt &b);
+  friend BigInt operator-(const BigInt &a, const BigInt &b);
 };
 #endif
