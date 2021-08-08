@@ -20,7 +20,7 @@ public:
   BigInt(const BigInt &a);
 
   // Getters
-  const &string toString() const;
+  const string toString() const;
 
   // Setters
   BigInt &set(const string &s);
@@ -34,5 +34,6 @@ public:
 
   // Creators
   BigInt add(const BigInt &other);
+  friend BigInt operator+(const BigInt &a, const BigInt &b);
 };
 #endif

@@ -31,7 +31,7 @@ BigInt::BigInt(const BigInt &other)
 }
 
 // Getters
-const &string BigInt::toString() const
+const string BigInt::toString() const
 {
   string res{};
   if (negative)
@@ -142,4 +142,30 @@ BigInt BigInt::add(const BigInt &other)
   BigInt *temp{new BigInt(*this)};
   // Returns by value. Use move semantic here.
   return temp->increment(other);
+}
+
+BigInt operator+(const BigInt &bigger, const BigInt &smaller)
+{
+  // Compare size, not value
+  if (bigger.vec.size() >= smaller.vec.size())
+  {
+    BigInt res{bigger};
+    int carry{};
+    for (int i{}; i < smaller.vec.size(); ++i)
+    {
+      res.vec[i] = smaller.vec[i] + bigger.vec[i] + carry;
+      carry = res.vec[i] / 10;
+      res.vec[i] %= 10;
+    }
+
+    for (int i{static_cast<int>(smaller.vec.size())}; i < bigger.vec.size(); ++i)
+    {
+      res.vec[i] = bigger.vec[i] + carry;
+      carry = res.vec[i] / 10;
+      res.vec[i] %= 10;
+    }
+    return res;
+  }
+  else
+    return operator+(smaller, bigger);
 }

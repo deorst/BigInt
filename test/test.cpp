@@ -173,6 +173,27 @@ void testAdd()
 
   cout << "OK\n";
 }
+void testAddition()
+{
+  cout << "\tAddition...";
+  {
+    BigInt a{"0001"}, b{"0002"};
+    assert((a + b).toString() == "0003");
+    assert((b + a).toString() == "0003");
+    // Initial variables not changed
+    assert(a.toString() == "0001");
+    assert(b.toString() == "0002");
+  }
+  {
+    BigInt a{"0001"}, b{"0009"};
+    assert((a + b).toString() == "0010");
+    assert((b + a).toString() == "0010");
+    // Initial variables not changed
+    assert(a.toString() == "0001");
+    assert(b.toString() == "0009");
+  }
+  cout << "OK\n";
+}
 
 int main()
 {
@@ -201,4 +222,5 @@ int main()
   // Creators
   cout << "\nCreators\n\n";
   testAdd();
+  testAddition();
 }
