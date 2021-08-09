@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <sstream>
 
 #include "../src/BigInt.h"
 
@@ -212,6 +213,20 @@ void testSubtraction()
 
   cout << "OK\n";
 }
+void testOutStream()
+{
+  cout << "\tOutstream...";
+  {
+    BigInt a{"123454"};
+    stringstream ss;
+    string s;
+
+    ss << a;
+    ss >> s;
+    assert(s == "123454");
+  }
+  cout << "OK\n";
+}
 
 int main()
 {
@@ -241,4 +256,6 @@ int main()
   cout << "\nOverloaded operators\n\n";
   testAddition();
   testSubtraction();
+
+  testOutStream();
 }

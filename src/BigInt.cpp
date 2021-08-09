@@ -187,3 +187,9 @@ BigInt operator-(const BigInt &a, const BigInt &b)
   }
   return res;
 }
+
+ostream &operator<<(ostream &out, const BigInt &self)
+{
+  out << self.toString();
+  return out;
+}
