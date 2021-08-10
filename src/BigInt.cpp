@@ -193,3 +193,11 @@ ostream &operator<<(ostream &out, const BigInt &self)
   out << self.toString();
   return out;
 }
+
+istream &operator>>(istream &in, BigInt &self)
+{
+  string s;
+  in >> s;
+  self.set(s);
+  return in;
+}

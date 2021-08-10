@@ -227,6 +227,25 @@ void testOutStream()
   }
   cout << "OK\n";
 }
+void testInStream()
+{
+  cout << "\tInstream...";
+  {
+    BigInt a{"0"};
+    stringstream ss;
+    ss << "456";
+    ss >> a;
+    assert(a.toString() == "456");
+  }
+  {
+    BigInt a{"0"};
+    stringstream ss;
+    ss << "-456";
+    ss >> a;
+    assert(a.toString() == "-456");
+  }
+  cout << "OK\n";
+}
 
 int main()
 {
@@ -258,4 +277,5 @@ int main()
   testSubtraction();
 
   testOutStream();
+  testInStream();
 }

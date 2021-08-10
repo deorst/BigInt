@@ -36,5 +36,6 @@ public:
   friend BigInt operator-(const BigInt &a, const BigInt &b);
 
   friend ostream &operator<<(ostream &out, const BigInt &self);
+  friend istream &operator>>(istream &in, BigInt &self);
 };
 #endif
