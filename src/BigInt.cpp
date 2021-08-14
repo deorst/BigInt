@@ -4,6 +4,33 @@
 
 using namespace std;
 
+template <typename T>
+vector<T> add(vector<T> &out, const vector<T> &a, const vector<T> &b)
+{
+  if (a.size() >= b.size())
+  {
+    if (a.size() > out.size())
+      out.resize(a.size());
+    int carry{};
+    for (int i{}; i < b.size(); ++i)
+    {
+      out[i] = b[i] + a[i] + carry;
+      carry = out[i] / 10;
+      out[i] %= 10;
+    }
+
+    for (int i{static_cast<int>(b.size())}; i < a.size(); ++i)
+    {
+      out[i] = a[i] + carry;
+      carry = out[i] / 10;
+      out[i] %= 10;
+    }
+    return out;
+  }
+  else
+    return add(out, b, a);
+}
+
 typedef int T;
 
 // Helpers
@@ -142,20 +169,7 @@ BigInt operator+(const BigInt &a, const BigInt &b)
   if (a.vec.size() >= b.vec.size())
   {
     BigInt res{a};
-    int carry{};
-    for (int i{}; i < b.vec.size(); ++i)
-    {
-      res.vec[i] = b.vec[i] + a.vec[i] + carry;
-      carry = res.vec[i] / 10;
-      res.vec[i] %= 10;
-    }
-
-    for (int i{static_cast<int>(b.vec.size())}; i < a.vec.size(); ++i)
-    {
-      res.vec[i] = a.vec[i] + carry;
-      carry = res.vec[i] / 10;
-      res.vec[i] %= 10;
-    }
+    add(res.vec, a.vec, b.vec);
     return res;
   }
   else
