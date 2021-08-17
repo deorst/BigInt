@@ -10,10 +10,10 @@ typedef int T;
 class BigInt
 {
 private:
-public:
   vector<T> vec;
   bool negative{false};
 
+public:
   // Constructors
   BigInt(const string &s);
   BigInt(const vector<T> &v);
@@ -27,11 +27,15 @@ public:
   BigInt &set(const vector<T> &other);
   BigInt &set(const BigInt &other);
 
+  // Trim leading zeros
+  void trim();
+
   // Mutators
   BigInt &increment(const BigInt &other);
   BigInt &decrement(const BigInt &other);
   BigInt &multiply(const BigInt &other);
 
+  // Operators
   friend BigInt operator+(const BigInt &a, const BigInt &b);
   friend BigInt operator-(const BigInt &a, const BigInt &b);
 

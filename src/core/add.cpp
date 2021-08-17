@@ -24,6 +24,8 @@ vector<T> add(vector<T> &out, const vector<T> &a, const vector<T> &b)
       carry = out[i] / 10;
       out[i] %= 10;
     }
+    if (carry)
+      out.push_back(carry);
     return out;
   }
   else

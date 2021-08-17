@@ -67,6 +67,22 @@ BigInt &BigInt::set(const BigInt &other)
   return *this;
 }
 
+// Trim leading zeros
+void BigInt::trim()
+{
+  int trimTo{static_cast<int>(vec.size())};
+  for (int i{static_cast<int>(vec.size()) - 1}; i >= 0; --i)
+  {
+    if (vec[i])
+    {
+      break;
+    }
+    else
+      trimTo = i;
+  }
+  vec.resize(trimTo);
+}
+
 // Mutators
 BigInt &BigInt::increment(const BigInt &a)
 {
