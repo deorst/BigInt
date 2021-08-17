@@ -193,13 +193,29 @@ BigInt operator-(const BigInt &a, const BigInt &b)
   }
   return res;
 }
-
+bool operator==(const BigInt &a, const BigInt &b)
+{
+  if (a.vec.size() != b.vec.size())
+    return false;
+  else
+  {
+    for (int i{}; i < a.vec.size(); ++i)
+    {
+      if (a.vec[i] != b.vec[i])
+        return false;
+    }
+  }
+  return true;
+}
+bool operator!=(const BigInt &a, const BigInt &b)
+{
+  return !(operator==(a, b));
+}
 ostream &operator<<(ostream &out, const BigInt &self)
 {
   out << self.toString();
   return out;
 }
-
 istream &operator>>(istream &in, BigInt &self)
 {
   string s;

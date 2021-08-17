@@ -246,7 +246,40 @@ void testInStream()
   }
   cout << "OK\n";
 }
-
+void testEqual()
+{
+  cout << "\tEqual...";
+  {
+    BigInt a{"1234"}, b{"1234"};
+    assert(a == b);
+  }
+  {
+    BigInt a{"1233"}, b{"1234"};
+    assert(!(a == b));
+  }
+  {
+    BigInt a{"123"}, b{"12"};
+    assert(!(a == b));
+  }
+  cout << "OK\n";
+}
+void testNotEqual()
+{
+  cout << "\tNotEqual...";
+  {
+    BigInt a{"1234"}, b{"1234"};
+    assert(!(a != b));
+  }
+  {
+    BigInt a{"1233"}, b{"1234"};
+    assert(a != b);
+  }
+  {
+    BigInt a{"123"}, b{"12"};
+    assert(a != b);
+  }
+  cout << "OK\n";
+}
 void testTrim()
 {
   cout << "\tTrim...";
@@ -302,6 +335,9 @@ int main()
 
   testOutStream();
   testInStream();
+
+  testEqual();
+  testNotEqual();
 
   // Trimming leading zeros
   cout << "\nTrimming leading zeros\n\n";
