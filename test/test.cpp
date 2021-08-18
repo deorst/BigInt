@@ -280,6 +280,21 @@ void testNotEqual()
   }
   cout << "OK\n";
 }
+void testBigger()
+{
+  cout << "\tBigger...";
+  {
+    BigInt a{"1234"}, b{"123"};
+    assert(a > b);
+    assert(!(b > a));
+  }
+  {
+    BigInt a{"1234"}, b{"1235"};
+    assert(!(a > b));
+    assert(b > a);
+  }
+  cout << "OK\n";
+}
 void testTrim()
 {
   cout << "\tTrim...";
@@ -338,6 +353,8 @@ int main()
 
   testEqual();
   testNotEqual();
+
+  testBigger();
 
   // Trimming leading zeros
   cout << "\nTrimming leading zeros\n\n";

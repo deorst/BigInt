@@ -193,6 +193,22 @@ BigInt operator-(const BigInt &a, const BigInt &b)
   }
   return res;
 }
+bool operator>(const BigInt &a, const BigInt &b)
+{
+  if (a.vec.size() != b.vec.size())
+  {
+    return (a.vec.size() > b.vec.size());
+  }
+  else
+  {
+    for (int i{static_cast<int>(a.vec.size()) - 1}; i >= 0; --i)
+    {
+      if (a.vec[i] != b.vec[i])
+        return (a.vec[i] > b.vec[i]);
+    }
+  }
+  return false;
+}
 bool operator==(const BigInt &a, const BigInt &b)
 {
   if (a.vec.size() != b.vec.size())
