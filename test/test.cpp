@@ -338,6 +338,26 @@ void testLessThanOrEqual()
   }
   cout << "OK\n";
 }
+void testGreaterThanOrEqual()
+{
+  cout << "\tGreaterOrEqual...";
+  {
+    BigInt a{"1234"}, b{"123"};
+    assert(a >= b);
+    assert(!(b >= a));
+  }
+  {
+    BigInt a{"1234"}, b{"1235"};
+    assert(!(a >= b));
+    assert(b >= a);
+  }
+  {
+    BigInt a{"1234"}, b{"1234"};
+    assert(a >= b);
+    assert(b >= a);
+  }
+  cout << "OK\n";
+}
 void testTrim()
 {
   cout << "\tTrim...";
@@ -400,6 +420,7 @@ int main()
   testGreaterThan();
   testLessThan();
   testLessThanOrEqual();
+  testGreaterThanOrEqual();
 
   // Trimming leading zeros
   cout << "\nTrimming leading zeros\n\n";

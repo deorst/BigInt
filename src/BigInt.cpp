@@ -208,6 +208,10 @@ bool operator<=(const BigInt &a, const BigInt &b)
 {
   return (!BICore::greaterThan(a.vec, b.vec));
 }
+bool operator>=(const BigInt &a, const BigInt &b)
+{
+  return (!BICore::lessThan(a.vec, b.vec));
+}
 bool operator==(const BigInt &a, const BigInt &b)
 {
   return BICore::equal(a.vec, b.vec);
