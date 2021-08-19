@@ -4,17 +4,20 @@ using namespace std;
 
 typedef int T;
 
-bool equal(const vector<T> &a, const vector<T> &b)
+namespace BICore
 {
-  if (a.size() != b.size())
-    return false;
-  else
+  bool equal(const vector<T> &a, const vector<T> &b)
   {
-    for (int i{}; i < a.size(); ++i)
+    if (a.size() != b.size())
+      return false;
+    else
     {
-      if (a[i] != b[i])
-        return false;
+      for (int i{}; i < a.size(); ++i)
+      {
+        if (a[i] != b[i])
+          return false;
+      }
     }
+    return true;
   }
-  return true;
 }

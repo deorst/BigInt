@@ -7,8 +7,12 @@ using namespace std;
 typedef int T;
 
 // Forward declarations
-vector<T> add(vector<T> &out, const vector<T> &a, const vector<T> &b);
-bool equal(const vector<T> &a, const vector<T> &b);
+namespace BICore
+{
+  vector<T> add(vector<T> &out, const vector<T> &a, const vector<T> &b);
+  bool equal(const vector<T> &a, const vector<T> &b);
+  bool greater(const vector<T> &a, const vector<T> &b);
+};
 
 // Helpers
 int toInt(const char &c)
@@ -162,7 +166,7 @@ BigInt operator+(const BigInt &a, const BigInt &b)
   if (a.vec.size() >= b.vec.size())
   {
     BigInt res{a};
-    add(res.vec, a.vec, b.vec);
+    BICore::add(res.vec, a.vec, b.vec);
     return res;
   }
   else
@@ -196,27 +200,15 @@ BigInt operator-(const BigInt &a, const BigInt &b)
 }
 bool operator>(const BigInt &a, const BigInt &b)
 {
-  if (a.vec.size() != b.vec.size())
-  {
-    return (a.vec.size() > b.vec.size());
-  }
-  else
-  {
-    for (int i{static_cast<int>(a.vec.size()) - 1}; i >= 0; --i)
-    {
-      if (a.vec[i] != b.vec[i])
-        return (a.vec[i] > b.vec[i]);
-    }
-  }
-  return false;
+  return BICore::greater(a.vec, b.vec);
 }
 bool operator==(const BigInt &a, const BigInt &b)
 {
-  return equal(a.vec, b.vec);
+  return BICore::equal(a.vec, b.vec);
 }
 bool operator!=(const BigInt &a, const BigInt &b)
 {
-  return !equal(a.vec, b.vec);
+  return !BICore::equal(a.vec, b.vec);
 }
 ostream &operator<<(ostream &out, const BigInt &self)
 {
