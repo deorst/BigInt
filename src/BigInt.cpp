@@ -8,6 +8,7 @@ typedef int T;
 
 // Forward declarations
 vector<T> add(vector<T> &out, const vector<T> &a, const vector<T> &b);
+bool equal(const vector<T> &a, const vector<T> &b);
 
 // Helpers
 int toInt(const char &c)
@@ -211,21 +212,11 @@ bool operator>(const BigInt &a, const BigInt &b)
 }
 bool operator==(const BigInt &a, const BigInt &b)
 {
-  if (a.vec.size() != b.vec.size())
-    return false;
-  else
-  {
-    for (int i{}; i < a.vec.size(); ++i)
-    {
-      if (a.vec[i] != b.vec[i])
-        return false;
-    }
-  }
-  return true;
+  return equal(a.vec, b.vec);
 }
 bool operator!=(const BigInt &a, const BigInt &b)
 {
-  return !(operator==(a, b));
+  return !equal(a.vec, b.vec);
 }
 ostream &operator<<(ostream &out, const BigInt &self)
 {
