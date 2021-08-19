@@ -280,7 +280,7 @@ void testNotEqual()
   }
   cout << "OK\n";
 }
-void testGreater()
+void testGreaterThan()
 {
   cout << "\tGreater...";
   {
@@ -299,7 +299,7 @@ void testGreater()
   }
   cout << "OK\n";
 }
-void testLess()
+void testLessThan()
 {
   cout << "\tLess...";
   {
@@ -318,7 +318,7 @@ void testLess()
   }
   cout << "OK\n";
 }
-void testLessOrEqual()
+void testLessThanOrEqual()
 {
   cout << "\tLessOrEqual...";
   {
@@ -397,9 +397,9 @@ int main()
   testEqual();
   testNotEqual();
 
-  testGreater();
-  testLess();
-  testLessOrEqual();
+  testGreaterThan();
+  testLessThan();
+  testLessThanOrEqual();
 
   // Trimming leading zeros
   cout << "\nTrimming leading zeros\n\n";

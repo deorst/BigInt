@@ -6,16 +6,16 @@ using namespace std;
 
 typedef int T;
 
-// Forward declarations
+// Core functions forward declarations 
 namespace BICore
 {
   vector<T> add(vector<T> &out, const vector<T> &a, const vector<T> &b);
   bool equal(const vector<T> &a, const vector<T> &b);
-  bool greater(const vector<T> &a, const vector<T> &b);
-  bool less(const vector<T> &a, const vector<T> &b);
+  bool greaterThan(const vector<T> &a, const vector<T> &b);
+  bool lessThan(const vector<T> &a, const vector<T> &b);
 };
 
-// Helpers
+// Helper functions forward declarations
 namespace BIHelp
 {
   int toInt(const char &c);
@@ -198,15 +198,15 @@ BigInt operator-(const BigInt &a, const BigInt &b)
 }
 bool operator>(const BigInt &a, const BigInt &b)
 {
-  return BICore::greater(a.vec, b.vec);
+  return BICore::greaterThan(a.vec, b.vec);
 }
 bool operator<(const BigInt &a, const BigInt &b)
 {
-  return BICore::less(a.vec, b.vec);
+  return BICore::lessThan(a.vec, b.vec);
 }
 bool operator<=(const BigInt &a, const BigInt &b)
 {
-  return (!BICore::greater(a.vec, b.vec));
+  return (!BICore::greaterThan(a.vec, b.vec));
 }
 bool operator==(const BigInt &a, const BigInt &b)
 {

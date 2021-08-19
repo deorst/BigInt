@@ -45,7 +45,7 @@ namespace BICore
     }
     return true;
   }
-  bool greater(const std::vector<T> &a, const std::vector<T> &b)
+  bool greaterThan(const std::vector<T> &a, const std::vector<T> &b)
   {
     if (a.size() != b.size())
     {
@@ -61,8 +61,8 @@ namespace BICore
     }
     return false;
   }
-  bool less(const std::vector<T> &a, const std::vector<T> &b)
+  bool lessThan(const std::vector<T> &a, const std::vector<T> &b)
   {
-    return greater(b, a);
+    return greaterThan(b, a);
   }
 }
