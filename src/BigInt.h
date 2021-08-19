@@ -27,10 +27,8 @@ public:
   BigInt &set(const vector<T> &other);
   BigInt &set(const BigInt &other);
 
-  // Trim leading zeros
-  void trim();
-
   // Mutators
+  void trim();
   BigInt &increment(const BigInt &other);
   BigInt &decrement(const BigInt &other);
   BigInt &multiply(const BigInt &other);
