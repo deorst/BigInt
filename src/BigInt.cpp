@@ -156,6 +156,7 @@ BigInt &BigInt::multiply(const BigInt &other)
   return *this;
 }
 
+// Arithmetic operators
 BigInt operator+(const BigInt &a, const BigInt &b)
 {
   // Compare size, not value
@@ -194,6 +195,8 @@ BigInt operator-(const BigInt &a, const BigInt &b)
   }
   return res;
 }
+
+// Comparison operators
 bool operator>(const BigInt &a, const BigInt &b)
 {
   return BICore::greaterThan(a.vec, b.vec);
@@ -218,6 +221,8 @@ bool operator!=(const BigInt &a, const BigInt &b)
 {
   return !BICore::equal(a.vec, b.vec);
 }
+
+// I/O operators
 ostream &operator<<(ostream &out, const BigInt &self)
 {
   out << self.toString();

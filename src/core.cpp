@@ -4,6 +4,7 @@ typedef int T;
 
 namespace BICore
 {
+  // Arithmetic operators
   std::vector<T> add(std::vector<T> &out, const std::vector<T> &a, const std::vector<T> &b)
   {
     if (a.size() >= b.size())
@@ -31,6 +32,8 @@ namespace BICore
     else
       return add(out, b, a);
   }
+
+  // Comparison operators
   bool equal(const std::vector<T> &a, const std::vector<T> &b)
   {
     if (a.size() != b.size())
