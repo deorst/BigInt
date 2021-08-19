@@ -15,13 +15,10 @@ namespace BICore
 };
 
 // Helpers
-int toInt(const char &c)
+namespace BIHelp
 {
-  return c - '0';
-}
-char toChar(const int &i)
-{
-  return i + '0';
+  int toInt(const char &c);
+  char toChar(const int &i);
 }
 
 // Constructors
@@ -46,7 +43,7 @@ const string BigInt::toString() const
     res.push_back('-');
   for (auto i{vec.rbegin()}; i != vec.rend(); ++i)
   {
-    res.push_back(toChar(*i));
+    res.push_back(BIHelp::toChar(*i));
   }
   return res;
 }
@@ -57,7 +54,7 @@ BigInt &BigInt::set(const string &s)
   vec.clear();
   for (auto i{s.rbegin()}; i != s.rend(); ++i)
   {
-    vec.push_back(toInt(*i));
+    vec.push_back(BIHelp::toInt(*i));
   }
   return *this;
 }
