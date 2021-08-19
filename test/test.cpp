@@ -282,7 +282,7 @@ void testNotEqual()
 }
 void testGreater()
 {
-  cout << "\tBigger...";
+  cout << "\tGreater...";
   {
     BigInt a{"1234"}, b{"123"};
     assert(a > b);
@@ -292,6 +292,29 @@ void testGreater()
     BigInt a{"1234"}, b{"1235"};
     assert(!(a > b));
     assert(b > a);
+  }
+  {
+    BigInt a{"1234"}, b{"1234"};
+    assert(!(a > b));
+  }
+  cout << "OK\n";
+}
+void testLess()
+{
+  cout << "\tLess...";
+  {
+    BigInt a{"1234"}, b{"123"};
+    assert(!(a < b));
+    assert(b < a);
+  }
+  {
+    BigInt a{"1234"}, b{"1235"};
+    assert(a < b);
+    assert(!(b < a));
+  }
+  {
+    BigInt a{"1234"}, b{"1234"};
+    assert(!(b < a));
   }
   cout << "OK\n";
 }
@@ -375,6 +398,7 @@ int main()
   testNotEqual();
 
   testGreater();
+  testLess();
   testLessOrEqual();
 
   // Trimming leading zeros

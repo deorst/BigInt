@@ -12,6 +12,7 @@ namespace BICore
   vector<T> add(vector<T> &out, const vector<T> &a, const vector<T> &b);
   bool equal(const vector<T> &a, const vector<T> &b);
   bool greater(const vector<T> &a, const vector<T> &b);
+  bool less(const vector<T> &a, const vector<T> &b);
 };
 
 // Helpers
@@ -198,6 +199,10 @@ BigInt operator-(const BigInt &a, const BigInt &b)
 bool operator>(const BigInt &a, const BigInt &b)
 {
   return BICore::greater(a.vec, b.vec);
+}
+bool operator<(const BigInt &a, const BigInt &b)
+{
+  return BICore::less(a.vec, b.vec);
 }
 bool operator<=(const BigInt &a, const BigInt &b)
 {

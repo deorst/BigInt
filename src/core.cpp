@@ -61,4 +61,8 @@ namespace BICore
     }
     return false;
   }
+  bool less(const std::vector<T> &a, const std::vector<T> &b)
+  {
+    return greater(b, a);
+  }
 }
