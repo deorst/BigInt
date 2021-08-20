@@ -7,6 +7,13 @@
 using namespace std;
 
 // Creation and initialization
+void testInitEmpty()
+{
+  cout << "\tInitEmpty...";
+  BigInt a{};
+  assert(a.toString() == "0");
+  cout << "OK\n";
+}
 void testInitWithString()
 {
   cout << "\tInitWithString...";
@@ -185,32 +192,38 @@ void testAddition()
 void testSubtraction()
 {
   cout << "\tSubtraction...";
-
   {
     BigInt a{"2"}, b{"1"};
     assert((a - b).toString() == "1");
   }
   {
-      // BigInt a{"1234"}, b{"123"};
-      // cout << (a - b).toString() << '\n';
-      // assert((a - b).toString() == "1111");
-  } {
-    BigInt a{"0010"}, b{"0001"};
-    assert((a - b).toString() == "0009");
+    BigInt a{"21"}, b{"10"};
+    assert((a - b).toString() == "11");
   }
   {
-    BigInt a{"1234"}, b{"0345"};
-    assert((a - b).toString() == "0889");
+    BigInt a{"31"}, b{"12"};
+    assert((a - b).toString() == "19");
   }
   {
-    BigInt a{"0001"}, b{"0002"};
-    assert((a - b).toString() == "-0001");
+    BigInt a{"1234"}, b{"123"};
+    assert((a - b).toString() == "1111");
+  }
+  {
+    BigInt a{"10"}, b{"1"};
+    assert((a - b).toString() == "9");
+  }
+  {
+    BigInt a{"1234"}, b{"345"};
+    assert((a - b).toString() == "889");
+  }
+  {
+    BigInt a{"1"}, b{"2"};
+    assert((a - b).toString() == "-1");
   }
   {
     BigInt a{"321"}, b{"1234"};
-    assert((a - b).toString() == "-1087");
+    assert((a - b).toString() == "-913");
   }
-
   cout << "OK\n";
 }
 void testOutStream()
@@ -386,6 +399,7 @@ int main()
 {
   // Creation and initialization
   cout << "\nCreation and initialization\n\n";
+  testInitEmpty();
   testInitWithString();
   testInitWithVector();
   testInitWithBigInt();

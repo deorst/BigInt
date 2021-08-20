@@ -15,6 +15,7 @@ private:
 
 public:
   // Constructors
+  BigInt(){};
   BigInt(const string &s);
   BigInt(const vector<T> &v);
   BigInt(const BigInt &a);

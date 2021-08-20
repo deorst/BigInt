@@ -32,6 +32,31 @@ namespace BICore
     else
       return add(out, b, a);
   }
+  std::vector<T> subtract(std::vector<T> &out, const std::vector<T> &big, const std::vector<T> &small)
+  {
+    // Here we assume a >= b
+    out.resize(big.size());
+    int carry{};
+    for (int i{}; i < small.size(); ++i)
+    {
+      if (big[i] < (small[i] + carry))
+      {
+        out[i] = (big[i] + 10) - (small[i] + carry);
+        carry = 1;
+      }
+      else
+      {
+        out[i] = big[i] - (small[i] + carry);
+        carry = 0;
+      }
+    }
+    for (int i{static_cast<int>(small.size())}; i < big.size(); ++i)
+    {
+      out[i] = big[i] - carry;
+      carry = 0;
+    }
+    return out;
+  }
 
   // Comparison operators
   bool equal(const std::vector<T> &a, const std::vector<T> &b)

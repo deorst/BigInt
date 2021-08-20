@@ -6,10 +6,11 @@ using namespace std;
 
 typedef int T;
 
-// Core functions forward declarations 
+// Core functions forward declarations
 namespace BICore
 {
   vector<T> add(vector<T> &out, const vector<T> &a, const vector<T> &b);
+  vector<T> subtract(vector<T> &out, const vector<T> &big, const vector<T> &small);
   bool equal(const vector<T> &a, const vector<T> &b);
   bool greaterThan(const vector<T> &a, const vector<T> &b);
   bool lessThan(const vector<T> &a, const vector<T> &b);
@@ -42,10 +43,13 @@ const string BigInt::toString() const
   string res{};
   if (negative)
     res.push_back('-');
-  for (auto i{vec.rbegin()}; i != vec.rend(); ++i)
-  {
-    res.push_back(BIHelp::toChar(*i));
-  }
+  if (!vec.size())
+    res.push_back('0');
+  else
+    for (auto i{vec.rbegin()}; i != vec.rend(); ++i)
+    {
+      res.push_back(BIHelp::toChar(*i));
+    }
   return res;
 }
 
@@ -171,28 +175,17 @@ BigInt operator+(const BigInt &a, const BigInt &b)
 }
 BigInt operator-(const BigInt &a, const BigInt &b)
 {
-  BigInt res(a);
-  if (b.vec.size() > res.vec.size())
-    res.vec.resize(b.vec.size());
-  for (int i{}; i < res.vec.size(); ++i)
+  BigInt res{};
+  if (a > b)
   {
-    if (res.vec[i] < b.vec[i])
-    {
-      if ((i + 1) < res.vec.size() && res.vec[i + 1] > 0)
-      {
-        --res.vec[i + 1];
-        res.vec[i] += 10;
-      }
-      else
-      {
-        res.negative = true;
-      }
-    }
-    if (!res.negative)
-      res.vec[i] -= b.vec[i];
-    else
-      res.vec[i] = b.vec[i] - res.vec[i];
+    BICore::subtract(res.vec, a.vec, b.vec);
   }
+  else
+  {
+    BICore::subtract(res.vec, b.vec, a.vec);
+    res.negative = true;
+  }
+  res.trim();
   return res;
 }
 
