@@ -11,6 +11,7 @@ namespace BICore
 {
   vector<T> add(vector<T> &out, const vector<T> &a, const vector<T> &b);
   vector<T> subtract(vector<T> &out, const vector<T> &big, const vector<T> &small);
+  vector<T> multiply(vector<T> &out, const vector<T> &a, const vector<T> &b);
   bool equal(const vector<T> &a, const vector<T> &b);
   bool greaterThan(const vector<T> &a, const vector<T> &b);
   bool lessThan(const vector<T> &a, const vector<T> &b);
@@ -186,6 +187,12 @@ BigInt operator-(const BigInt &a, const BigInt &b)
     res.negative = true;
   }
   res.trim();
+  return res;
+}
+BigInt operator*(const BigInt &a, const BigInt &b)
+{
+  BigInt res{};
+  BICore::multiply(res.vec, a.vec, b.vec);
   return res;
 }
 

@@ -146,7 +146,6 @@ void testDecrement()
 void testMultiply()
 {
   cout << "\tMultiply...";
-
   {
     BigInt a{"0123"}, b{"0006"};
     assert(a.multiply(b).toString() == "0738");
@@ -163,7 +162,6 @@ void testMultiply()
     BigInt a{"0123"}, b{"0056"};
     assert(b.multiply(a).toString() == "6888");
   }
-
   cout << "OK\n";
 }
 
@@ -223,6 +221,30 @@ void testSubtraction()
   {
     BigInt a{"321"}, b{"1234"};
     assert((a - b).toString() == "-913");
+  }
+  cout << "OK\n";
+}
+void testMultiplication()
+{
+  cout << "\tMultiplication...";
+  {
+    BigInt a{"1"}, b{"2"};
+    assert((a * b).toString() == "2");
+    assert((b * a).toString() == "2");
+    assert((a * a).toString() == "1");
+    assert((b * b).toString() == "4");
+    assert((b * b * b).toString() == "8");
+    assert((b * b * b * b).toString() == "16");
+  }
+  {
+    BigInt a{"123"}, b{"6"};
+    assert((a * b).toString() == "738");
+    assert((b * a).toString() == "738");
+  }
+  {
+    BigInt a{"123"}, b{"56"};
+    assert((a * b).toString() == "6888");
+    assert((b * a).toString() == "6888");
   }
   cout << "OK\n";
 }
@@ -424,6 +446,7 @@ int main()
   cout << "\nOverloaded operators\n\n";
   testAddition();
   testSubtraction();
+  testMultiplication();
 
   testOutStream();
   testInStream();

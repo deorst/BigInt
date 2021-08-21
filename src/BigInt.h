@@ -37,6 +37,7 @@ public:
   // Operators
   friend BigInt operator+(const BigInt &a, const BigInt &b);
   friend BigInt operator-(const BigInt &a, const BigInt &b);
+  friend BigInt operator*(const BigInt &a, const BigInt &b);
   friend bool operator==(const BigInt &a, const BigInt &b);
   friend bool operator!=(const BigInt &a, const BigInt &b);
   friend bool operator>(const BigInt &a, const BigInt &b);

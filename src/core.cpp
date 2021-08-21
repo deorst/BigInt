@@ -57,6 +57,29 @@ namespace BICore
     }
     return out;
   }
+  std::vector<T> multiply(std::vector<T> &out, const std::vector<T> &a, const std::vector<T> &b)
+  {
+    int carry{};
+    for (int i{}; i < a.size(); ++i)
+    {
+      for (int j{}; j < b.size(); ++j)
+      {
+        if ((i + j) >= out.size())
+          out.push_back(0);
+        out[i + j] += a[i] * b[j] + carry;
+        carry = out[i + j] / 10;
+        out[i + j] %= 10;
+      }
+      if (carry)
+      {
+        if ((i + b.size()) >= out.size())
+          out.push_back(0);
+        out[i + b.size()] += carry;
+      }
+      carry = 0;
+    }
+    return out;
+  }
 
   // Comparison operators
   bool equal(const std::vector<T> &a, const std::vector<T> &b)
